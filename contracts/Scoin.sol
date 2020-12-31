@@ -3,7 +3,8 @@ pragma solidity >=0.4.16 <0.9.0;
 
 contract Scoin {
     uint256 public totalSupply;
-    constructor() public {
+
+    constructor () public {
         totalSupply = 1000000;
     }
 }
