@@ -4,6 +4,7 @@ pragma solidity >=0.4.16 <0.9.0;
 contract Scoin {
     string public name;
     string public symbol;
+    string public standard;
     uint256 public totalSupply;
 
     // return the balance  of an address:
@@ -12,6 +13,7 @@ contract Scoin {
     constructor (uint256 _initialSupply) public {
         name = "Scoin Token";
         symbol = "SCT";
+        standard = "Scoin Token v1.0";
         totalSupply = _initialSupply;
 
         // Allocate the initial supply

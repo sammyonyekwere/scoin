@@ -2,7 +2,24 @@ var Scoin = artifacts.require("./Scoin.sol");
 
 contract('Scoin', function(accounts) {
     var tokenInstance;
-    it('sets the total supply upon deployment', function() {
+    it('initializes the contract with the correct values', function() {
+        return Scoin.deployed().then(function(instance) {
+            tokenInstance = instance;
+            return tokenInstance.name();
+        }).then(function(name) {
+            assert.equal(name, 'Scoin Token', 'has the correct name');
+            return tokenInstance.symbol();
+        }).then(function(symbol) {
+            assert.equal(symbol, 'SCT', 'has the right symbol');
+            return tokenInstance.standard();
+        }).then(function(standard) {
+            assert.equal(standard, 'Scoin Token v1.0', 'has the right standard');
+        })
+    })
+
+
+
+    it('allocates the total supply upon deployment', function() {
         return Scoin.deployed().then(function(instance) {
             tokenInstance = instance;
             return tokenInstance.totalSupply();
