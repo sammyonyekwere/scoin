@@ -7,6 +7,13 @@ contract Scoin {
     string public standard;
     uint256 public totalSupply;
 
+    // Transfer event
+    event Transfer(
+        address indexed _from,
+        address indexed _to,
+        uint256 _value
+    );
+
     // return the balance  of an address:
     mapping(address=>uint256) public balanceOf;
 
@@ -19,4 +26,16 @@ contract Scoin {
         // Allocate the initial supply
         balanceOf[msg.sender] = _initialSupply;
     }
+
+    function transfer(address _to, uint256 _value) public returns (bool success) {
+        require(balanceOf[msg.sender] >= _value);
+
+        // Transfer the balance
+        balanceOf[msg.sender] -= _value;
+        balanceOf[_to] += _value;
+
+        emit Transfer(msg.sender, _to, _value);
+
+        return true;
+    } 
 }
